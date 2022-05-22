@@ -1,15 +1,15 @@
 pipeline {
     agent {
         docker {
-            image 'node:lts-bullseye-slim' 
+            image 'node:12-alpine' 
             args '-p 3000:3000' 
         }
     }
     stages {
-        stage('Build') { 
+        stage('Testing') { 
             steps {
-                sh 'sudo chown -R 1001:1001 "/.npm"'
-                sh 'npm install' 
+                sh 'node -v'
+                sh 'npm -v' 
             }
         }
     }
