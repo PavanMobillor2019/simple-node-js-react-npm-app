@@ -23,6 +23,8 @@ sleep 1
 echo $! > .pidfile
 set +x
 
+docker save -o /home/jenkins/node-react-test-app node:lts-buster-slim
+scp /home/jenkins/node-react-test-app devops@192.168.56.3:/home/devops/
 echo 'Now...'
 echo 'Visit http://localhost:3000 to see your Node.js/React application in action.'
 echo '(This is why you specified the "args ''-p 3000:3000''" parameter when you'
