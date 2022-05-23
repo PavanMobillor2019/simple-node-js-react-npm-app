@@ -22,7 +22,9 @@ pipeline {
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                input message: 'Do you wnat to deliver this build'
+                sh 'docker save -o ./node-react-test-app node:lts-buster-slim'
+                sh 'scp ./node-react-test-app devops@192.168.56.3:/home/devops/'
                 sh './jenkins/scripts/kill.sh'
             }
         }
